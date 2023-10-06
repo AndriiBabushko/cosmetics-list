@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo';
-import { AppBar, Box, Toolbar, Menu, Container, MenuItem, IconButton, Typography } from '@mui/material';
+import { AppBar, Box, Toolbar, Menu, Container, MenuItem, IconButton } from '@mui/material';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';

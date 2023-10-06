@@ -1,13 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchCosmetics } from '../../store/reducers/actionCreators';
+import React, { ChangeEvent, useState } from 'react';
+import { useAppSelector } from '../../hooks/redux';
 import { UserLayout } from '../../components/layouts/UserLayout';
 import { Pagination } from '@mui/material';
 
 export const Cosmetics = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { cosmetics } = useAppSelector((state) => state.cosmetics);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -15,7 +11,9 @@ export const Cosmetics = () => {
   //   dispatch(fetchCosmetics());
   // }, []);
 
-  const onChangePageHandler = () => {};
+  const onChangePageHandler = (event: ChangeEvent<unknown>, page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <UserLayout>

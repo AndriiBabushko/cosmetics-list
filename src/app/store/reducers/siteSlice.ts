@@ -15,10 +15,10 @@ export const siteSlice = createSlice({
   name: 'site',
   initialState,
   reducers: {
-    siteIsLoading: (state, action) => {
+    siteIsLoading: (state) => {
       state.isLoading = true;
     },
-    siteIsNotLoading: (state, action) => {
+    siteIsNotLoading: (state) => {
       state.isLoading = false;
     },
     siteHasError: (state, action) => {
