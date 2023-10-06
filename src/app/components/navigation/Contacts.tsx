@@ -9,27 +9,27 @@ export const Contacts = () => {
         <Box className={'flex justify-between flex-col md:flex-row'}>
           <Stack spacing={{ md: 4, xs: 2 }} direction={{ md: 'row', xs: 'column' }} className={'my-3'}>
             <Stack spacing={1} className={'items-center md:items-start'}>
-              <Typography variant={'h3'} className={'!text-xl !font-bold'}>
+              <Typography variant={'h3'} className={'!text-lg !font-bold'}>
                 Contact
               </Typography>
-              <NavLink to={'https://t.me/AndriiRaccoon'} className={'text-gray-800 text-lg visited:text-gray-600'}>
+              <NavLink to={'https://t.me/AndriiRaccoon'} className={'text-gray-800 text-md visited:text-gray-600'}>
                 Telegram
               </NavLink>
-              <Typography className={'text-gray-800 text-lg'}>andriibabushko@gmail.com</Typography>
+              <Typography className={'text-gray-800 text-md'}>andriibabushko@gmail.com</Typography>
             </Stack>
             <Stack spacing={1} className={'items-center md:items-start'}>
-              <Typography variant={'h3'} className={'!text-xl !font-bold'}>
+              <Typography variant={'h3'} className={'!text-lg !font-bold'}>
                 Development
               </Typography>
               <NavLink
                 to={'https://github.com/AndriiBabushko/cosmetics-list'}
-                className={'text-gray-800 text-lg visited:text-gray-600'}
+                className={'text-gray-800 text-md visited:text-gray-600'}
               >
                 Github
               </NavLink>
               <NavLink
                 to={'https://cosmetics-list.vercel.app/'}
-                className={'text-gray-800 text-lg visited:text-gray-600'}
+                className={'text-gray-800 text-md visited:text-gray-600'}
               >
                 Deployment
               </NavLink>

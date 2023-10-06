@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICosmetic } from '../../models/ICosmetic';
 import { fetchCosmetic, fetchCosmeticByName, fetchCosmetics } from './actionCreators';
 import { IError } from '../../models/IError';
-import { cosmeticsPerPage } from '../../lib/constants';
+import { cosmeticsPerPage, getPages } from '../../lib/constants';
 
 type CosmeticsState = {
   cosmetics: ICosmetic[];
@@ -34,10 +34,11 @@ export const cosmeticsSlice = createSlice({
       state.currentPage = action.payload;
     },
     setPageCosmetics: (state, action: PayloadAction<ICosmetic[] | undefined>) => {
-      const start = (state.currentPage - 1) * cosmeticsPerPage;
-      const end = start + cosmeticsPerPage;
-      if (action.payload) state.pageCosmetics = action.payload.slice(start, end);
-      else state.pageCosmetics = state.cosmetics.slice(start, end);
+      state.pageCosmetics = getPages(
+        state.currentPage,
+        cosmeticsPerPage,
+        action.payload ? action.payload : state.cosmetics,
+      );
     },
   },
   extraReducers: (builder) => {
@@ -71,7 +72,7 @@ export const cosmeticsSlice = createSlice({
     builder.addCase(fetchCosmeticByName.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.filteredCosmetics = action.payload;
+      state.pageCosmetics = getPages(state.currentPage, cosmeticsPerPage, action.payload);
       state.totalPages = Math.ceil(action.payload.length / cosmeticsPerPage);
     });
     builder.addCase(fetchCosmeticByName.pending, (state) => {

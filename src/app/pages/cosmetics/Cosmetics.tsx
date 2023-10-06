@@ -8,15 +8,16 @@ import { setPageCosmetics, setCurrentPage } from '../../store/reducers/cosmetics
 import { Search } from '../../components/ui/Search';
 import { CosmeticGrid } from '../../components/cosmetics/CosmeticGrid';
 import { ErrorPopup } from '../../components/ui/ErrorPopup';
+import { IError } from '../../models/IError';
 
 export const Cosmetics = () => {
   const dispatch = useAppDispatch();
   const { pageCosmetics, isLoading, error, currentPage, totalPages } = useAppSelector((state) => state.cosmetics);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchButtonTriggered, setIsSearchButtonTriggered] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCosmetics());
-    dispatch(setPageCosmetics());
   }, [dispatch]);
 
   const onChangePageHandler = (event: ChangeEvent<unknown>, page: number) => {
@@ -26,12 +27,14 @@ export const Cosmetics = () => {
 
   const onSearchTermChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value as string;
-    setSearchTerm(value);
+    if (value) setSearchTerm(value);
+    else setIsSearchButtonTriggered(false);
   };
 
   const onSearchClick = () => {
+    console.log(searchTerm);
+    setIsSearchButtonTriggered(true);
     dispatch(fetchCosmeticByName(searchTerm));
-    dispatch(setPageCosmetics());
   };
 
   if (isLoading) {
@@ -47,12 +50,16 @@ export const Cosmetics = () => {
         }
       >
         <Typography variant={'h3'} className={'!text-xl !font-bold !mb-2'}>
-          Cosmetics page
+          {isSearchButtonTriggered ? `Search result for ${searchTerm}` : 'Cosmetics page'}
         </Typography>
         <Search onSearchTermChange={onSearchTermChange} onSearchClick={onSearchClick} />
       </Box>
 
-      <CosmeticGrid cosmetics={pageCosmetics} />
+      {pageCosmetics.length > 0 ? (
+        <CosmeticGrid cosmetics={pageCosmetics} />
+      ) : (
+        <ErrorPopup error={{ status: 404, error: 'No cosmetics found' } as IError} />
+      )}
 
       <Box className={'flex justify-center w-full mt-2'}>
         <Pagination

@@ -14,3 +14,9 @@ export const formatDate = (date: string | number | Date) => {
   const d = new Date(date);
   return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
 };
+
+export const getPages = (page: number, itemsPerPage: number, array: any[]) => {
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return array.slice(start, end);
+};
