@@ -82,10 +82,10 @@ export const Navbar = () => {
           <Logo className={'flex-grow justify-center md:hidden'} />
           <Box className={'flex-grow justify-center hidden md:flex'}>
             {navbarPages.map((page) => (
-              <NavLink to={page.link} key={page.key} onClick={handleCloseNavMenu}>
+              <NavLink to={page.link} key={page.key} onClick={handleCloseNavMenu} className={'px-2'}>
                 {({ isActive }) => {
                   return (
-                    <NavItem icon={page.icon} className={isActive ? '!bg-white !text-gray-800' : '!text-white'}>
+                    <NavItem icon={page.icon} className={`${isActive ? '!bg-white !text-gray-800' : '!text-white'}`}>
                       {page.label}
                     </NavItem>
                   );

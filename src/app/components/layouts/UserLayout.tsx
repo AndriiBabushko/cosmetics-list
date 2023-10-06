@@ -12,7 +12,7 @@ export const UserLayout: FC<Props> = ({ children }) => {
     <>
       <Navbar />
       <main className={'bg-gray-100 flex-grow'}>
-        <Container maxWidth={'lg'} className={'py-[25px]'}>
+        <Container maxWidth={'lg'} className={'py-4'}>
           {children}
         </Container>
       </main>

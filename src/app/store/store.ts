@@ -1,9 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import siteReducer from './reducers/siteSlice';
 import cosmeticsReducer from './reducers/cosmeticsSlice';
 
 const rootReducer = combineReducers({
-  site: siteReducer,
   cosmetics: cosmeticsReducer,
 });
 
