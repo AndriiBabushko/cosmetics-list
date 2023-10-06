@@ -6,6 +6,7 @@ import { Spinner } from './app/components/ui/Spinner';
 import { useAppSelector } from './app/hooks/redux';
 import { Cosmetics } from './app/pages/cosmetics/Cosmetics';
 import { Cosmetic } from './app/pages/cosmetics/Cosmetic';
+import { Alert } from '@mui/material';
 
 export const App = () => {
   const { isLoading, error } = useAppSelector((state) => state.site);
@@ -13,7 +14,7 @@ export const App = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      {error && <div>{error.error}</div>}
+      {error && <Alert severity={error.status == 200 ? 'success' : error.status == 400 ? 'warning' : 'error'}></Alert>}
       <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Root />} />

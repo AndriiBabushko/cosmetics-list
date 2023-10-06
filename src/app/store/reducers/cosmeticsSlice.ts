@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { ICosmetic } from '../../models/ICosmetic';
 import { fetchCosmetic, fetchCosmetics } from './actionCreators';
 
@@ -17,10 +17,10 @@ export const cosmeticsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCosmetics.fulfilled, (state, action: PayloadAction<ICosmetic[]>) => {
+    builder.addCase(fetchCosmetics.fulfilled, (state, action) => {
       state.cosmetics = action.payload;
     });
-    builder.addCase(fetchCosmetic.fulfilled, (state, action: PayloadAction<ICosmetic>) => {
+    builder.addCase(fetchCosmetic.fulfilled, (state, action) => {
       state.cosmetic = action.payload;
     });
   },

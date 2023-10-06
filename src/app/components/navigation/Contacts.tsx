@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Contacts = () => {
   return (
-    <footer className={'bg-gray-300 w-full py-6'}>
+    <footer className={'bg-gray-300 w-full'}>
       <Container maxWidth={'lg'}>
         <Box className={'flex justify-between flex-col md:flex-row'}>
           <Stack spacing={{ md: 4, xs: 2 }} direction={{ md: 'row', xs: 'column' }} className={'my-3'}>
