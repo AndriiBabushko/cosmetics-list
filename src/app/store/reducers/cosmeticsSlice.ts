@@ -45,6 +45,7 @@ export const cosmeticsSlice = createSlice({
     builder.addCase(fetchCosmetics.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
+      state.currentPage = 1;
       state.cosmetics = action.payload;
       state.totalPages = Math.ceil(action.payload.length / cosmeticsPerPage);
     });
@@ -72,6 +73,7 @@ export const cosmeticsSlice = createSlice({
     builder.addCase(fetchCosmeticByName.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
+      state.currentPage = 1;
       state.pageCosmetics = getPages(state.currentPage, cosmeticsPerPage, action.payload);
       state.totalPages = Math.ceil(action.payload.length / cosmeticsPerPage);
     });
